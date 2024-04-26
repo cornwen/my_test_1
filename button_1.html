@@ -7,17 +7,74 @@
     <title>Document</title>
 </head>
 <style>
+    .one{
+        /* border: 2px solid; */
+        text-align:center
+    }
+    .top{
+        left: 30px;
+       
+    }
+    .disagree{
+        border: 3px solid;
+        height: 30px;
+        position:relative;
+        left: 200px;
+        /* margin: 10px; */
+        /* width:100px */
+       
+    }
+    .agree{
+        border: 3px solid;
+        height: 30px;
+        position :relative;
+        /* left: 200px; */
+        top:200px;
+        
+    }
  
-  td{
-    border: 1px black solid;
-
-  }
 </style>
 <body>
-  <div id="app"></div>
- 
+    <div class="one">
+        <div class="top"><h2>同意不同意</h2>
+        </div>
+        <!-- <button class="disagree" style="margin-top:10px;margin-left:10px;width:100px">不同意</button> -->
+    <button class="disagree" style="top:200px;left:0px;width:100px">不同意</button>
+    <button class="agree">同意</button></div>
+    <script>
 
+    let da=document.querySelector('.disagree')
+    w=+da.style.width.replace('px', '')//开始的宽度
+    da.addEventListener('mouseenter',function(){
+        t=+da.style.top.replace('px', '')//开始的外上边距
+        l=+da.style.left.replace('px', '')
+        console.log(`开始的位置:${t}`);
+        let i=1
+        let b=0
+        while(i){
+            b=parseInt((Math.random()*2-1)*50)
+            console.log(`B为${b}`);
+            if (b+t>=0 && (b>30 || b<-30)){
+                i=0
+            }else if(b+l>=0 && (b>w || b<-w)){
+                i=0
+            }
+        }
+        
+        da.style.top=`${b+t}px`
+        da.style.left=`${b+l}px`
+        console.log(da.style.top);
+    })
+    let ag=document.querySelector('.agree')
+    let h=document.querySelector('h2')
+    ag.addEventListener('click',function(){
+        h.innerText='江湖再见'
+        ag.style.display='none'
+        da.style.display='none'
+    })
 
-
+// let a='10px'
+// console.log(+a.replace('px', '')+10);
+    </script>
 </body>
 </html>
